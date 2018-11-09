@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+     <servlet-name>Controlador</servlet-name>
+     <servlet-class>com.unaj.edu.Controlador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>Controlador</servlet-name>
+     <url-pattern>/Controlador</url-pattern>
+  </servlet-mapping>
 </web-app>
