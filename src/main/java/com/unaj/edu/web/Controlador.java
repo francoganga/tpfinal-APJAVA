@@ -1,7 +1,6 @@
 package com.unaj.edu;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,6 @@ import java.io.*;
 @Controller
 public class Controlador {
 
-	private static final Logger logger = LoggerFactory.getLogger(Controlador.class);
 
 	@GetMapping("/hello")
     public String hello(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
