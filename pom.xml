@@ -92,6 +92,13 @@
     </dependency>
   </dependencies>
 
+  <exclusions>
+      <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+      </exclusion>
+  </exclusions> 
+
   <build>
     <finalName>tpfinal-APJAVA</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
