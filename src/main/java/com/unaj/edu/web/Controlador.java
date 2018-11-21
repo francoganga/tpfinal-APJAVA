@@ -13,6 +13,7 @@ import java.io.IOException;
 import com.unaj.edu.models.User;
 
 import com.unaj.edu.repository.UserRepository;
+import com.unaj.edu.services.UserService;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import java.io.*;
 public class Controlador {
 
 	@Autowired
-	UserRepository userRepo;
+	UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -38,9 +39,11 @@ public class Controlador {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("userForm") User userForm, Model model) {
+        
         User user = new User("usuario1","contraseña1");
 
-        userRepo.save(user);
+
+        userService.save(user);
         
 
 
