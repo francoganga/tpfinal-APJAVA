@@ -9,19 +9,12 @@ import lombok.*;
 @Getter @Setter
 public class User {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	private String username;
 
 	private String password;
-
-	private String firstname;
-
-	private String lastname;
-
-	private String email;
-
-	private String address;
-
-	private int phone;
 
 	public User(){}
 

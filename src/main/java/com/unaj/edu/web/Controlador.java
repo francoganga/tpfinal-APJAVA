@@ -10,10 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import com.unaj.edu.models.User;
+
+import com.unaj.edu.repository.UserRepository;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.*;
@@ -21,11 +25,26 @@ import java.io.*;
 @Controller
 public class Controlador {
 
+	UserRepository userRepo;
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
 
-	@GetMapping("/hello")
-    public String hello(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "hello";
+        return "login";
     }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute("userForm") User userForm, Model model) {
+        
 
+        
+
+
+        return "redirect:/index";
+    }
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String registration() {
+
+        return "index";
+    }
+    
 }
