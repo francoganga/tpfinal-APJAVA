@@ -6,7 +6,7 @@ import lombok.*;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +16,13 @@ public class User {
 
 	private String password;
 
+	private int puntos;
+
 	public User(){}
+
+	public User(String u, String p){
+		this.username = u;
+		this.password = p;
+	}
 
 }

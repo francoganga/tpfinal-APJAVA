@@ -20,12 +20,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.*;
 
 @Controller
 public class Controlador {
 
+	@Autowired
 	UserRepository userRepo;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -34,8 +38,9 @@ public class Controlador {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("userForm") User userForm, Model model) {
-        
+        User user = new User("usuario1","contraseña1");
 
+        userRepo.save(user);
         
 
 
