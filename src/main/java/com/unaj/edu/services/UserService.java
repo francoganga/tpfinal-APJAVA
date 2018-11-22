@@ -17,7 +17,7 @@ public class UserService{
 
     
     public void save(User user) {
-        user.setPuntos(10);
+        user.setPoints(10);
         userRepository.save(user);
     }
 

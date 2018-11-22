@@ -14,9 +14,17 @@ public class User {
 
 	private String username;
 
+	private String firstname;
+
+	private String lastname;
+
 	private String password;
 
-	private int puntos;
+	private int type;
+
+	private String email;
+
+	private int points;
 
 	public User(){}
 
