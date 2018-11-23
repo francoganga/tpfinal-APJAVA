@@ -17,19 +17,19 @@
 
     <div class="login-page">
       <div class="form">
-        <form:form class="register-form" action="">
-          <input type="text" placeholder="name"/>
-          <input type="password" placeholder="password"/>
-          <input type="text" placeholder="email address"/>
-          <button>create</button>
+        <form:form class="register-form" modelAttribute="userForm">
+          <form:input path="username" type="text" placeholder="name"/>
+          <form:input path="password" type="password" placeholder="password"/>
+          <form:input path="email" type="text" placeholder="email address"/>
+          <button type="submit">CREATE</button>
           <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form:form>
-        <form:form class="login-form" action="${contextPath}/login">
+        <form class="login-form" action="${contextPath}/login">
           <input type="text" placeholder="username"/>
           <input type="password" placeholder="password"/>
           <input type="submit" value="LOGIN"/>
           <p class="message">Not registered? <a href="#">Create an account</a></p>
-        </form:form>
+        </form>
       </div>
     </div>
     

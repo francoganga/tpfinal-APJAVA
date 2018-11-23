@@ -45,25 +45,28 @@ public class Controlador {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("userForm") User userForm, Model model) {
+
+
+        System.out.println(userForm.toString());
         
-        User user1 = new User("usuario1","contraseña1");
+        // User user1 = new User("usuario1","contraseña1");
 
-        User user2 = new User("usuario2","contraseña2");
+        // User user2 = new User("usuario2","contraseña2");
 
-        Problem problema = new Problem(user1,"Tengo un problema con spring MVC","No puedo hacer que ande, que hago?");
+        // Problem problema = new Problem(user1,"Tengo un problema con spring MVC","No puedo hacer que ande, que hago?");
 
-        Comment comentario1 = new Comment(user1,problema,"no importa ya lo solucione");
+        // Comment comentario1 = new Comment(user1,problema,"no importa ya lo solucione");
 
-        Comment comentario2 = new Comment(user2,problema,"HIJO DE P*TA COMO HICISTE");
+        // Comment comentario2 = new Comment(user2,problema,"HIJO DE P*TA COMO HICISTE");
 
 
-        userService.save(user1);
-        userService.save(user2);
+        // userService.save(user1);
+        // userService.save(user2);
 
-        problemService.save(problema);
+        // problemService.save(problema);
 
-        commentService.save(comentario1);
-        commentService.save(comentario2);
+        // commentService.save(comentario1);
+        // commentService.save(comentario2);
 
         //User testuser = userService.findByUsername("usuario1");
 
