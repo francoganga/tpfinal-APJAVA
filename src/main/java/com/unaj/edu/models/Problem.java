@@ -23,14 +23,14 @@ public class Problem {
 	private String text;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_problem_id", nullable = false)
+    @JoinColumn(name = "alumno_problem_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-	private User user;
+	private Alumno alumno;
+
 
 	public Problem(){}
 
-	public Problem(User user, String title, String text){
-		this.user = user;
+	public Problem(String title, String text){
 		this.title = title;
 		this.text = text;
 		this.resolved = false;

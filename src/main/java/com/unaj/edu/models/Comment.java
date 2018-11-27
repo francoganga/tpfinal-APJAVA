@@ -24,18 +24,22 @@ public class Comment {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Problem problem;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_comment_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "alumno_comment_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-	private User user;
+	private Alumno alumno;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "tutor_comment_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	private Tutor tutor;
 
 	private int points;
 
 	public Comment(){}
 
-	public Comment(User user, Problem problem, String cont){
+	public Comment(Problem problem, String cont){
 		this.problem = problem;
-		this.user = user;
 		this.content = cont;
 	}
 

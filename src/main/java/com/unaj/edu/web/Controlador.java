@@ -16,6 +16,9 @@ import com.unaj.edu.repository.*;
 import com.unaj.edu.services.*;
 import java.util.List;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +31,11 @@ import java.io.*;
 @Controller
 public class Controlador {
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    AlumnoService alumnoService;
+
+    @Autowired
+    TutorService tutorService;
 
     @Autowired
     CommentService commentService;
@@ -37,40 +43,91 @@ public class Controlador {
     @Autowired
     ProblemService problemService;
 
+    @Autowired
+    MateriaService materiaService;
+
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("alumnoForm", new Alumno());
 
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("userForm") User userForm, Model model) {
+    public String login(@ModelAttribute("alumnoForm") Alumno alumnoForm, Model model) {
 
+        System.out.println(alumnoForm.toString());
+        Alumno alumno = new Alumno("usuario1","contraseña1");
 
-        System.out.println(userForm.toString());
+        Tutor tutor1 = new Tutor("usuario2","contraseña2");
+
+        Tutor tutor2 = new Tutor("usuariotutor","contraseña3");
+
+        Materia materia1 = new Materia();
+
+        Materia materia2 = new Materia();
+
+        Materia materia3 = new Materia();
+
+        Materia materia4 = new Materia();
+
+        materia1.setTitle("Matematica");
+
+        materia2.setTitle("Lengua");
+
+        materia3.setTitle("S. Sociales");
+
+        materia4.setTitle("Geografia");
+
+        HashSet alumnos = new HashSet<Alumno>();
+        alumnos.add(alumno);   
+
         
-        // User user1 = new User("usuario1","contraseña1");
+        HashSet materias1 = new HashSet<Materia>();
+        materias1.add(materia1); 
+        materias1.add(materia2);
 
-        // User user2 = new User("usuario2","contraseña2");
+        HashSet materias2 = new HashSet<Materia>();
+        materias2.add(materia3); 
+        materias2.add(materia4);
 
-        // Problem problema = new Problem(user1,"Tengo un problema con spring MVC","No puedo hacer que ande, que hago?");
+        Iterator valor1 = materias1.iterator();
+        Iterator valor2 = materias2.iterator();
 
-        // Comment comentario1 = new Comment(user1,problema,"no importa ya lo solucione");
+        while (valor1.hasNext()) { 
+            System.out.println(valor1.next().toString()); 
+        }
 
-        // Comment comentario2 = new Comment(user2,problema,"HIJO DE P*TA COMO HICISTE");
+        while (valor2.hasNext()) {
+            System.out.println(valor2.next().toString()); 
+        }
 
 
-        // userService.save(user1);
-        // userService.save(user2);
+        
 
-        // problemService.save(problema);
+        tutor1.setMaterias(materias1);
 
-        // commentService.save(comentario1);
-        // commentService.save(comentario2);
+        tutor2.setMaterias(materias2);
 
-        //User testuser = userService.findByUsername("usuario1");
+        tutor1.setAlumnos(alumnos);
 
-        //System.out.println(testuser.getUsername());
+        tutor2.setAlumnos(alumnos);
+
+
+        materiaService.save(materia1);
+
+        materiaService.save(materia2);
+
+        materiaService.save(materia3);
+
+        materiaService.save(materia4);
+
+        alumnoService.save(alumno);
+
+        tutorService.save(tutor1);
+        
+        tutorService.save(tutor2);
+        
         
 
 

@@ -2,12 +2,13 @@ package com.unaj.edu.models;
 
 import javax.persistence.*;
 import lombok.*;
+import java.util.Set;
 
 
 @Entity
 @Table
 @Data
-public class User {
+public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -19,19 +20,25 @@ public class User {
 	private String lastname;
 
 	private String password;
+
 	private String salt;
 
-	private int type;
+	@ManyToMany(mappedBy = "alumnos")
+	private Set<Tutor> tutores;
+
+	//private int type;
 
 	private String email;
 
 	private int points;
 
-	public User(){}
 
-	public User(String u, String p){
+	public Alumno(){}
+
+	public Alumno(String u, String p){
 		this.username = u;
 		this.password = p;
+		this.points = 0;
 	}
 
 }
