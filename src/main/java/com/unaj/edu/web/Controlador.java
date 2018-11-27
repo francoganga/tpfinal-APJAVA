@@ -184,5 +184,33 @@ public class Controlador {
 
         return "index";
     }
+
+    @GetMapping(value = "/register")
+    public String registerView(Model model){
+        model.addAttribute("alumnoForm", new UserRegistration());
+        return "register";
+    }
+    @PostMapping(value = "/register")
+    public String register(@ModelAttribute("alumnoForm") UserRegistration alumnoForm, Model model){
+        if( alumnoForm.getType().equals("tutor") ){
+            Tutor tutor = new Tutor();
+            tutor.setUsername(alumnoForm.getUsername());
+            tutor.setPassword(alumnoForm.getPassword());
+            tutor.setFirstname(alumnoForm.getFirstname());
+            tutor.setLastname(alumnoForm.getLastname());
+            tutor.setEmail(alumnoForm.getEmail());
+            tutorService.save(tutor);
+        }
+        else if( alumnoForm.getType().equals("alumno")){
+            Alumno alumno = new Alumno();
+            alumno.setUsername(alumnoForm.getUsername());
+            alumno.setPassword(alumnoForm.getPassword());
+            alumno.setFirstname(alumnoForm.getFirstname());
+            alumno.setLastname(alumnoForm.getLastname());
+            alumno.setEmail(alumnoForm.getEmail());
+            alumnoService.save(alumno);
+        }
+        return "register";
+    }
     
 }
