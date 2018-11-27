@@ -1,4 +1,4 @@
-package com.unaj.edu;
+package com.unaj.edu.web;
 
 
 
@@ -58,6 +58,9 @@ public class Controlador {
 
         System.out.println(alumnoForm.toString());
         Alumno alumno = new Alumno("usuario1","contraseña1");
+
+        alumno.setFirstname("Carlos");
+        alumno.setLastname("Sancse");
 
         Tutor tutor1 = new Tutor("usuario2","contraseña2");
 
