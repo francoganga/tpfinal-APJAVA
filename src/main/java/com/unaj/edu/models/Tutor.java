@@ -43,6 +43,7 @@ public class Tutor implements Serializable{
     @JoinTable(name = "alumno_tutor", joinColumns = @JoinColumn(name = "tutor_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "alumno_id", referencedColumnName = "id"))
     private Set<Alumno> alumnos;
 
+    public Tutor(){}
 
 	public Tutor(String u, String p){
 		this.username = u;

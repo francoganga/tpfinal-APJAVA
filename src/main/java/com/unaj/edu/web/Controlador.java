@@ -14,6 +14,7 @@ import com.unaj.edu.models.*;
 
 import com.unaj.edu.repository.*;
 import com.unaj.edu.services.*;
+import com.unaj.edu.web.PasswordEncoder;
 import java.util.List;
 
 import java.util.HashSet;
@@ -49,87 +50,129 @@ public class Controlador {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("alumnoForm", new Alumno());
+        model.addAttribute("userForm", new UserLogin());
 
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("alumnoForm") Alumno alumnoForm, Model model) {
+    public String login(@ModelAttribute("userForm") UserLogin userLogin, Model model) {
 
-        System.out.println(alumnoForm.toString());
-        Alumno alumno = new Alumno("usuario1","contraseña1");
-
-        alumno.setFirstname("Carlos");
-        alumno.setLastname("Sancse");
-
-        Tutor tutor1 = new Tutor("usuario2","contraseña2");
-
-        Tutor tutor2 = new Tutor("usuariotutor","contraseña3");
-
-        Materia materia1 = new Materia();
-
-        Materia materia2 = new Materia();
-
-        Materia materia3 = new Materia();
-
-        Materia materia4 = new Materia();
-
-        materia1.setTitle("Matematica");
-
-        materia2.setTitle("Lengua");
-
-        materia3.setTitle("S. Sociales");
-
-        materia4.setTitle("Geografia");
-
-        HashSet alumnos = new HashSet<Alumno>();
-        alumnos.add(alumno);   
 
         
-        HashSet materias1 = new HashSet<Materia>();
-        materias1.add(materia1); 
-        materias1.add(materia2);
+        System.out.println("username desde form: " + userLogin.getUsername());
+        System.out.println("password desde form: " + userLogin.getPassword());
+        System.out.println("type desde form: " + userLogin.getType());
 
-        HashSet materias2 = new HashSet<Materia>();
-        materias2.add(materia3); 
-        materias2.add(materia4);
+        if (userLogin.getType().equals("tutor")) {
+            Tutor tutor = tutorService.findByUsername(userLogin.getUsername());
+            if (tutor != null) {                
+                if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),tutor.getPassword(),tutor.getSalt()) == true){
+                    System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
+                    return "redirect:/index";
+                }else{
+                    System.out.println("Usuario o contraseña incorrectas");
+                    model.addAttribute("error","Usuario o contraseña incorrectas");
+                    return "login";
+                }            
+            }else{
+                System.out.println("Usuario o contraseña incorrectas");
+                model.addAttribute("error","Usuario o contraseña incorrectas");
+                return "login";
+            }
+            
 
-        Iterator valor1 = materias1.iterator();
-        Iterator valor2 = materias2.iterator();
-
-        while (valor1.hasNext()) { 
-            System.out.println(valor1.next().toString()); 
+        }else if (userLogin.getType().equals("alumno")) {
+            Alumno alumno = alumnoService.findByUsername(userLogin.getUsername());
+            if (alumno != null) {
+                if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),alumno.getPassword(),alumno.getSalt()) == true){
+                    System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
+                    return "redirect:/index";
+                }else{
+                    System.out.println("Usuario o contraseña incorrectas");
+                    model.addAttribute("error","Usuario o contraseña incorrectas");
+                    return "login";
+                }
+            }else {
+                System.out.println("Usuario o contraseña incorrectas");
+                model.addAttribute("error","Usuario o contraseña incorrectas");
+                return "login";
+            }
         }
 
-        while (valor2.hasNext()) {
-            System.out.println(valor2.next().toString()); 
-        }
+        // System.out.println(alumnoForm.toString());
+        // Alumno alumno = new Alumno("usuario1","contraseña1");
+
+        // alumno.setFirstname("Carlos");
+        // alumno.setLastname("Sans");
+
+
+
+        // Tutor tutor2 = new Tutor("usuariotutor","contraseña3");
+
+        // Materia materia1 = new Materia();
+
+        // Materia materia2 = new Materia();
+
+        // Materia materia3 = new Materia();
+
+        // Materia materia4 = new Materia();
+
+        // materia1.setTitle("Matematica");
+
+        // materia2.setTitle("Lengua");
+
+        // materia3.setTitle("S. Sociales");
+
+        // materia4.setTitle("Geografia");
+
+        // HashSet alumnos = new HashSet<Alumno>();
+        // alumnos.add(alumno);   
+
+        
+        // HashSet materias1 = new HashSet<Materia>();
+        // materias1.add(materia1); 
+        // materias1.add(materia2);
+
+        // HashSet materias2 = new HashSet<Materia>();
+        // materias2.add(materia3); 
+        // materias2.add(materia4);
+
+        // Iterator valor1 = materias1.iterator();
+        // Iterator valor2 = materias2.iterator();
+
+        // while (valor1.hasNext()) { 
+        //     System.out.println(valor1.next().toString()); 
+        // }
+
+        // while (valor2.hasNext()) {
+        //     System.out.println(valor2.next().toString()); 
+        // }
 
 
         
 
-        tutor1.setMaterias(materias1);
+        // tutor1.setMaterias(materias1);
 
-        tutor2.setMaterias(materias2);
+        // tutor2.setMaterias(materias2);
 
-        tutor1.setAlumnos(alumnos);
+        // tutor1.setAlumnos(alumnos);
 
-        tutor2.setAlumnos(alumnos);
+        // tutor2.setAlumnos(alumnos);
 
 
-        materiaService.save(materia1);
+        // materiaService.save(materia1);
 
-        materiaService.save(materia2);
+        // materiaService.save(materia2);
 
-        materiaService.save(materia3);
+        // materiaService.save(materia3);
 
-        materiaService.save(materia4);
+        // materiaService.save(materia4);
 
-        alumnoService.save(alumno);
+        // alumnoService.save(alumno);
 
-        tutorService.save(tutor1);
+        // tutorService.save(tutor1);
         
-        tutorService.save(tutor2);
+        // tutorService.save(tutor2);
         
         
 
