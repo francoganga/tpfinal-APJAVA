@@ -1,7 +1,7 @@
 package com.unaj.edu.web;
 
 
-
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,13 +49,14 @@ public class Controlador {
 
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public String registration(Model model, HttpSession session) {
+        System.out.println(session.getAttribute("userLogged"));
         model.addAttribute("userForm", new UserLogin());
 
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("userForm") UserLogin userLogin, Model model) {
+    public String login(@ModelAttribute("userForm") UserLogin userLogin, Model model, HttpSession session) {
 
 
         
@@ -67,6 +68,7 @@ public class Controlador {
             Tutor tutor = tutorService.findByUsername(userLogin.getUsername());
             if (tutor != null) {                
                 if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),tutor.getPassword(),tutor.getSalt()) == true){
+                    session.setAttribute("userLogged",userLogin.getUsername());
                     System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
                     return "redirect:/index";
                 }else{
@@ -85,6 +87,7 @@ public class Controlador {
             Alumno alumno = alumnoService.findByUsername(userLogin.getUsername());
             if (alumno != null) {
                 if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),alumno.getPassword(),alumno.getSalt()) == true){
+                    session.setAttribute("userLogged",userLogin.getUsername());
                     System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
                     return "redirect:/index";
                 }else{
@@ -192,25 +195,61 @@ public class Controlador {
     }
     @PostMapping(value = "/register")
     public String register(@ModelAttribute("alumnoForm") UserRegistration alumnoForm, Model model){
+        System.out.println(alumnoForm.toString());
         if( alumnoForm.getType().equals("tutor") ){
-            Tutor tutor = new Tutor();
-            tutor.setUsername(alumnoForm.getUsername());
-            tutor.setPassword(alumnoForm.getPassword());
-            tutor.setFirstname(alumnoForm.getFirstname());
-            tutor.setLastname(alumnoForm.getLastname());
-            tutor.setEmail(alumnoForm.getEmail());
-            tutorService.save(tutor);
+
+            //Tutor tutor = new Tutor();
+            Tutor tutor = tutorService.findByUsername(alumnoForm.getUsername());
+            if ( tutor == null){
+
+                tutor = new Tutor();
+
+                tutor.setUsername(alumnoForm.getUsername());
+                tutor.setPassword(alumnoForm.getPassword());
+                tutor.setFirstname(alumnoForm.getFirstname());
+                tutor.setLastname(alumnoForm.getLastname());
+                tutor.setEmail(alumnoForm.getEmail());
+                tutorService.save(tutor);
+                return "redirect:/login";
+            }else{
+                model.addAttribute("error","Usuario ya existe");
+                return "register";
+            }
+            
         }
         else if( alumnoForm.getType().equals("alumno")){
-            Alumno alumno = new Alumno();
-            alumno.setUsername(alumnoForm.getUsername());
-            alumno.setPassword(alumnoForm.getPassword());
-            alumno.setFirstname(alumnoForm.getFirstname());
-            alumno.setLastname(alumnoForm.getLastname());
-            alumno.setEmail(alumnoForm.getEmail());
-            alumnoService.save(alumno);
+
+            //Alumno alumno = new Alumno();
+
+            Alumno alumno = alumnoService.findByUsername(alumnoForm.getUsername());
+
+            if(alumno == null){
+                alumno = new Alumno();
+                alumno.setUsername(alumnoForm.getUsername());
+                alumno.setPassword(alumnoForm.getPassword());
+                alumno.setFirstname(alumnoForm.getFirstname());
+                alumno.setLastname(alumnoForm.getLastname());
+                alumno.setEmail(alumnoForm.getEmail());
+                alumnoService.save(alumno);
+                return "redirect:/login";
+            }else{
+                model.addAttribute("error", "Usuario ya existe");
+                return "register";
+            }
+            
         }
-        return "register";
+        return "redirect:/index";
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout(Model model, HttpSession session){
+        session.setAttribute("userLogged","");
+        session.setAttribute("error","Ha cerrado sesion exitosamente");
+
+
+        System.out.println("PASA");
+        model.addAttribute("userForm", new UserLogin());
+        return "redirect:/login";
     }
     
 }

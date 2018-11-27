@@ -75,6 +75,7 @@
                                 <div class="form-group">
                                     <label><form:radiobutton class="form-check-input" path="type" name="optradio" value="alumno"/>Alumno</label>
                                 </div>
+                                <span>${error}</span>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Register"/>
