@@ -60,17 +60,18 @@ public class Controlador {
 
 
         
-        System.out.println("username desde form: " + userLogin.getUsername());
-        System.out.println("password desde form: " + userLogin.getPassword());
-        System.out.println("type desde form: " + userLogin.getType());
+        System.out.println("\n username desde form: " + userLogin.getUsername());
+        System.out.println("\n password desde form: " + userLogin.getPassword());
+        System.out.println("\n type desde form: " + userLogin.getType());
 
         if (userLogin.getType().equals("tutor")) {
             Tutor tutor = tutorService.findByUsername(userLogin.getUsername());
             if (tutor != null) {                
                 if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),tutor.getPassword(),tutor.getSalt()) == true){
                     session.setAttribute("userLogged",userLogin.getUsername());
+                    session.setAttribute("userType",userLogin.getType());
                     System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
-                    return "redirect:/index";
+                    return "redirect:/" + userLogin.getType();
                 }else{
                     System.out.println("Usuario o contraseña incorrectas");
                     model.addAttribute("error","Usuario o contraseña incorrectas");
@@ -87,9 +88,10 @@ public class Controlador {
             Alumno alumno = alumnoService.findByUsername(userLogin.getUsername());
             if (alumno != null) {
                 if(PasswordEncoder.verifyUserPassword(userLogin.getPassword(),alumno.getPassword(),alumno.getSalt()) == true){
-                    session.setAttribute("userLogged",userLogin.getUsername());
+                    session.setAttribute("userLogged",userLogin.getUsername());                    
+                    session.setAttribute("userType",userLogin.getType());
                     System.out.println("Bienvenido "+userLogin.getUsername()+"!!");
-                    return "redirect:/index";
+                    return "redirect:/" + userLogin.getType();
                 }else{
                     System.out.println("Usuario o contraseña incorrectas");
                     model.addAttribute("error","Usuario o contraseña incorrectas");
@@ -244,12 +246,29 @@ public class Controlador {
     @GetMapping(value = "/logout")
     public String logout(Model model, HttpSession session){
         session.setAttribute("userLogged","");
+        session.setAttribute("userType","");
         session.setAttribute("error","Ha cerrado sesion exitosamente");
 
 
         System.out.println("PASA");
         model.addAttribute("userForm", new UserLogin());
         return "redirect:/login";
+    }
+
+    @GetMapping(value = "/alumno")
+    public String alumno(Model model, HttpSession session){
+
+
+        return "alumno";
+    }
+
+    
+
+    @GetMapping(value = "/tutor")
+    public String tutor(){
+
+
+        return "tutor";
     }
     
 }

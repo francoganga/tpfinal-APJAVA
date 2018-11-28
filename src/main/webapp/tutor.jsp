@@ -6,9 +6,6 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     session.setAttribute("error","Necesita estar logueado para ingresar");
     response.sendRedirect("/login");
 }
-//if (session.getAttribute("userType").equals("alumno")){
-//    reponse.sendRedirect("/")
-//}
 
 
 
@@ -105,7 +102,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="tutor.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -191,7 +188,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/page1.js"></script>
+    <script src="js/tutor.js"></script>
 
 </body>
 

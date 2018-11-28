@@ -6,9 +6,6 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     session.setAttribute("error","Necesita estar logueado para ingresar");
     response.sendRedirect("/login");
 }
-//if (session.getAttribute("userType").equals("alumno")){
-//    reponse.sendRedirect("/")
-//}
 
 
 
@@ -103,18 +100,21 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             </span>
                             </div>
                             <!-- /input-group -->
+                        </li>                        
+                        <li>
+                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Materias<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a >Flot Charts</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a >Morris.js Charts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -132,7 +132,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div id="titulo" class="col-lg-12">
                     <h1 class="page-header">Lista de problemas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -191,7 +191,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/page1.js"></script>
+    <script src="js/alumno.js"></script>
 
 </body>
 

@@ -9,6 +9,7 @@ import com.unaj.edu.models.Problem;
 import com.unaj.edu.repository.ProblemRepository;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class ProblemService{
@@ -18,6 +19,10 @@ public class ProblemService{
     
     public void save(Problem problem) {
         problemRepository.save(problem);
+    }
+
+    public List<Problem> findAll(){
+    	return problemRepository.findAll();
     }
 
 }

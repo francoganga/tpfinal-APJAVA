@@ -73,6 +73,37 @@ $(function() {
             }
         }); 
     }
+    cargarProblemas();
+    function cargarProblemas(){
+        $.ajax({
+            type : "GET",
+            url : "/cargarProblemas",
+            success: function(result){
+                if(result.status == "Done"){
+                    $.each(result.data, function(index , value){
+                        // Creo divs
+                        $.each(value, function(i){
+                            // Atributos de cada elemento
+                            $("#titulo").append(value[i]);
+                            // Atributos de cada elemento
+                        });
+
+                        // Creo divs
+                    });
+                    console.log("Success: ", result);
+                }else{
+                    
+                    console.log("Fail: ", result);
+                }
+            },
+            error : function(e) {
+                
+                console.log("ERROR: ", e);
+            }
+        }); 
+    }
+    
+
 
 
 
