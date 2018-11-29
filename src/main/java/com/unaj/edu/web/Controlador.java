@@ -262,6 +262,26 @@ public class Controlador {
         return "alumno";
     }
 
+    @GetMapping(value = "/crearProblema")
+    public String problemaView(Model model){
+        model.addAttribute("problemaForm", new ProblemaCreation());
+        return "crearProblema";
+    }
+
+    @PostMapping(value = "/crearProblema")
+    public String crearProblema(@ModelAttribute("problemaForm") ProblemaCreation problemaForm, Model model, HttpSession session){
+        Problem problema = new Problem();
+
+        problema.setTitle(problemaForm.getTitle());
+        problema.setText(problemaForm.getText());
+        Alumno alumno = alumnoService.findByUsername((String)session.getAttribute("userLogged"));
+        problema.setAlumno(alumno);
+        Materia materia = materiaService.findByTitle(problemaForm.getMateriaTitle());
+        problema.setMateria(materia);
+        problemService.save(problema);
+
+        return "alumno";
+    }
     
 
     @GetMapping(value = "/tutor")

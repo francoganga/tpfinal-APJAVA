@@ -1,4 +1,6 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
 
@@ -60,7 +62,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Bienvenido ${userLogged}!!</a>
+                <a class="navbar-brand" href="alumno.jsp">Bienvenido ${userLogged}!!</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -102,10 +104,10 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             <!-- /input-group -->
                         </li>                        
                         <li>
-                            <a href="/crearProblema"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
+                            <a href="crearproblema.jsp"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
                         </li>
                         <li>
-                            <a href="/alumno"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
+                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Materias<span class="fa arrow"></span></a>
@@ -132,44 +134,61 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
         <div id="page-wrapper">
             <div class="row">
-                <div id="titulo" class="col-lg-12">
-                    <h1 class="page-header">Lista de problemas</h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Creacion de Problemas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                
-            <!-- /.row -->
-            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Problema
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Acciones
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a name="test1" href="#">Hacer cosa</a>
-                                    </ul>
-                                </div>
-                            </div>
+                            Creacion de Problemas
                         </div>
                         <div class="panel-body">
-                            <p>Descripcion problema</p>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <form:form method="POST" action="/crearProblema" modelAttribute="problemaForm">
+                                        <div class="form-group">
+                                            <label>Titulo del problema</label>
+                                            <form:input type="text" path="title" class="form-control" placeholder="Titulo"></form:input>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Describe tu problema</label>
+                                            <form:textarea path="text" rows="5"  class="form-control" placeholder="Mi problema es..."></form:textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Elije la materia</label>
+                                            <div class="form-group">
+                                                <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="Matematica" checked="true"></form:radiobutton> Matematica</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="Lengua"></form:radiobutton> Lengua</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="S. Sociales"></form:radiobutton> S. Sociales</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="Geografia"></form:radiobutton> Geografia</label>
+                                            </div>
+                                            <div class="form-group">
+                                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Continuar"/>
+                                            </div>
+                                        </div>
+                                        
+                                    </form:form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                            </div>
+                            <!-- /.row (nested) -->
                         </div>
-                        <div class="panel-footer">
-                            Cosas de puntaje
-                        </div>
+                        <!-- /.panel-body -->
                     </div>
-                   
-                    
-                    
-                
-                
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
@@ -191,7 +210,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/alumno.js"></script>
+    <script src="js/crearproblema.js"></script>
 
 </body>
 

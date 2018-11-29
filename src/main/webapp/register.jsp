@@ -75,6 +75,8 @@
                                 <div class="form-group">
                                     <label><form:radiobutton class="form-check-input" path="type" name="optradio" value="alumno"/>Alumno</label>
                                 </div>
+                                <p>Ya tiene un cuenta? <a href="/login">inicie sesion aqui!</a></p>
+                                <br> 
                                 <span>${error}</span>
                                 
                                 <!-- Change this to a button or input when using this as a form -->

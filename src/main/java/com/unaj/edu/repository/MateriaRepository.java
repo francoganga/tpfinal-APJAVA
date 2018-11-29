@@ -10,4 +10,5 @@ import java.util.Set;
 
 @Repository
 public interface MateriaRepository extends JpaRepository<Materia, Long>{
+	Materia findByTitle(String title);
 }

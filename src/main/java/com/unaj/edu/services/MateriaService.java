@@ -19,6 +19,9 @@ public class MateriaService{
     public void save(Materia materia) {
         materiaRepository.save(materia);
     }
+    public Materia findByTitle(String title) {
+        return materiaRepository.findByTitle(title);
+    }
 
 
 

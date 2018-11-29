@@ -65,6 +65,8 @@
                                 <div class="form-group">
                                     <label><form:radiobutton class="form-check-input" path="type" name="optradio" value="alumno"/>Alumno</label>
                                 </div>
+                                <p>No tiene cuenta? <a href="/register">registrese aqui!</a></p>
+                                <br> 
                                 <span>${error}</span>
                                 
                                 <!-- Change this to a button or input when using this as a form -->

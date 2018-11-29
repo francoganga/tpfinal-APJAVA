@@ -27,6 +27,11 @@ public class Problem {
     @OnDelete(action = OnDeleteAction.CASCADE)
 	private Alumno alumno;
 
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "materia_problem_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Materia materia;
+
 
 	public Problem(){}
 
