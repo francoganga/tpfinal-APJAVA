@@ -62,7 +62,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="alumno.jsp">Bienvenido ${userLogged}!!</a>
+                <a class="navbar-brand" href="/alumno">Bienvenido ${userLogged}!!</a>
             </div>
             <!-- /.navbar-header -->
 

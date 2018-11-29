@@ -102,10 +102,10 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             <!-- /input-group -->
                         </li>                        
                         <li>
-                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
+                            <a href="/crearProblema"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
                         </li>
                         <li>
-                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
+                            <a href="/alumno"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
                         </li>
                         
                        
