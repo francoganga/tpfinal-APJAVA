@@ -290,5 +290,18 @@ public class Controlador {
 
         return "tutor";
     }
+
+    @GetMapping(value = "/problema")
+    public String mostrarProblem(@RequestParam("problemId") String problemId, Model model){
+
+        Long problemId_long = Long.parseLong(problemId,10);
+
+        Problem problem = problemService.findById(problemId_long);
+        model.addAttribute("text", problem.getText());
+        model.addAttribute("title",problem.getTitle());
+        model.addAttribute("problem_id",problem.getId());
+  
+        return "problem";
+    }
     
 }

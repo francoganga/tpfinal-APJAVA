@@ -55,7 +55,7 @@ $(function() {
     function ajaxGet(){
         $.ajax({
             type : "GET",
-            url : "/alumnoRest",
+            url : "/alumno",
             success: function(result){
                 if(result.status == "Done"){
                     $('#datos').append(result.data[0] + "<br>")
@@ -73,64 +73,40 @@ $(function() {
             }
         }); 
     }
-    cargarProblemas();
-    function cargarProblemas(){
+
+    loadComments()
+
+    function loadComments(){
+        var problem_id = $("#problem_id").text();
         $.ajax({
             type : "GET",
-            url : "/cargarProblemas",
+            url : "/getComments?problemId=" + problem_id,
             success: function(result){
                 if(result.status == "Done"){
                     for(i=0; i < result.data.length; i++){
-                        $("#page-wrapper").append(
-                            "<div class='row'>" +
-                "<div class='col-lg-12'>" +
-                    "<div class='panel panel-default'>" +
-                        "<div class='panel-heading'>" +
-                            "<a class='problem_link' href='#' id='" + result.data[i][3] +"'>    "+result.data[i][0] + "</a>"+
-                            "<div class='pull-right'>" +
-                                "<div class='btn-group'>" +
-                                    "<button type='button' class='btn btn-default btn-xs dropdown-toggle' data-toggle='dropdown'>" +
-                                        "Acciones" +
-                                        "<span class='caret'></span>" +
-                                    "</button>" +
-                                    "<ul class='dropdown-menu pull-right' role='menu'>" +
-                                        "<li><a name='test1' href='#'>Hacer cosa</a>" +
-                                    "</ul>" +
-                                "</div>" +
-                            "</div>" +
-                        "</div>" +
-                        "<div class='panel-body'>" +
-                            "<p>" + result.data[i][1] + 
-                            "</p>" +
-                        "</div>" +
-                        "<div class='panel-footer'>" +
-                        "</div>" +
-                    "</div>" +
-            "</div>"
-
-
+                        $("#comments").append(
+                            "<div class='panel panel-default'>" +
+                                "<div class='panel-heading'>" +
+                                result.data[i][1] +
+                                "</div>"+
+                                "<div class='panel-body'>"+
+                                result.data[i][2] +
+                                "</div></div></div>"
 
                             );
-                        
                     }
+                    
                     console.log("Success: ", result);
                 }else{
-                    
                     console.log("Fail: ", result);
                 }
             },
             error : function(e) {
-                
                 console.log("ERROR: ", e);
             }
         }); 
     }
 
-    $("body").on("click", ".problem_link", function(){
-        window.location.href = "/problema?problemId=" + this.id;
-    });
-
-    
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.unaj.edu.models.Problem;
 import com.unaj.edu.repository.ProblemRepository;
 
+import java.util.Optional;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,6 +24,16 @@ public class ProblemService{
 
     public List<Problem> findAll(){
     	return problemRepository.findAll();
+    }
+    public Problem findById(Long id){
+    	Problem existingProblem;
+    	Optional<Problem> problem = problemRepository.findById(id);
+    	if(problem.isPresent()){
+    		existingProblem = problem.get();
+    	}else{
+    		existingProblem = new Problem();
+    	}
+    	return existingProblem;
     }
 
 }
