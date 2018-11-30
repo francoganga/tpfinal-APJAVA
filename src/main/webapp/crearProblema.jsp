@@ -106,18 +106,42 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                         <li>
                             <a href="crearproblema.jsp"><i class="fa fa-dashboard fa-fw"></i> Crear problema</a>
                         </li>
+                        
                         <li>
-                            <a href="alumno.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Materias<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Buscar Problemas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a >Flot Charts</a>
+                                    <a class="materia_search" id="0" href="#">Matematica</a>
                                 </li>
                                 <li>
-                                    <a >Morris.js Charts</a>
+                                    <a class="materia_search" id="1" href="#">Lengua</a>
                                 </li>
+                                <li>
+                                    <a class="materia_search" id="2" href="#">S. Sociales</a>
+                                </li>
+                                <li>
+                                    <a class="materia_search" id="3" href="#">Geografia</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Buscar Tutores<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="tutor_search" id="0" href="#">Matematica</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="1" href="#">Lengua</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="2" href="#">S. Sociales</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="3" href="#">Geografia</a>
+                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -205,6 +229,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="mm/metisMenu.min.js"></script>
+    <script src="js/common.js"></script>
 
    
     

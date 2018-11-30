@@ -103,7 +103,42 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                         </li>
                         
                         <li>
-                            <a href="/tutor"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Buscar Problemas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="materia_search" id="0" href="#">Matematica</a>
+                                </li>
+                                <li>
+                                    <a class="materia_search" id="1" href="#">Lengua</a>
+                                </li>
+                                <li>
+                                    <a class="materia_search" id="2" href="#">S. Sociales</a>
+                                </li>
+                                <li>
+                                    <a class="materia_search" id="3" href="#">Geografia</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Buscar Tutores<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="tutor_search" id="0" href="#">Matematica</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="1" href="#">Lengua</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="2" href="#">S. Sociales</a>
+                                </li>
+                                <li>
+                                    <a class="tutor_search" id="3" href="#">Geografia</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                        
                         

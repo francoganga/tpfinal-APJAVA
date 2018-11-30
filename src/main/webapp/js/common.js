@@ -1,5 +1,11 @@
 $(document).ready(function(){
-	$('.message a').click(function(){
-	$('.login-form, .register-form').animate({height: "toggle", opacity: "toggle"}, "slow");
-});
+	$(".materia_search").click(function(){
+        var materiaId = this.id;
+        window.location.href = "/filtrarProblema?materiaId=" + materiaId;
+    });
+    $(".tutor_search").click(function(){
+        var materiaId = this.id;
+        window.location.href = "/filtrarTutor?materiaId=" + materiaId;
+    });
+
 });

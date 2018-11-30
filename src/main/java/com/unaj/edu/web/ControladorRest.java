@@ -18,6 +18,9 @@ import com.unaj.edu.models.*;
 
 import com.unaj.edu.services.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 @RestController
 public class ControladorRest {
 
@@ -141,6 +144,69 @@ public class ControladorRest {
 		
 
 		Response response = new Response("Done", data);
+		return response;
+	}
+	@GetMapping(value= "/filtrarProblemaResults")
+	public Response filtrarMateria(@RequestParam("materiaId") String materiaId){
+
+		
+
+		List<Problem> problems = problemService.findByMateria(Long.parseLong(materiaId,10));
+
+		
+		JSONArray array = new JSONArray();
+
+		Iterator value = problems.iterator();
+
+		Problem problem;
+
+		while(value.hasNext()){
+			problem = (Problem) value.next();
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("id", problem.getId());
+			jsonObj.put("user", problem.getAlumno().getUsername());
+			jsonObj.put("title", problem.getTitle());
+			jsonObj.put("text", problem.getText());
+
+			array.add(jsonObj);
+
+		}
+
+		Response response = new Response("Done", array);
+
+		return response;
+	}
+	@GetMapping(value= "/filtrarTutorResults")
+	public Response filtrarTutorResults(@RequestParam("materiaId") String materiaId){
+
+		
+
+		List<Tutor> tutores = tutorService.findByMateria(Long.parseLong(materiaId,10));
+
+		
+		JSONArray array = new JSONArray();
+
+		Iterator value = tutores.iterator();
+
+		Tutor tutor;
+
+		while(value.hasNext()){
+			tutor = (Tutor) value.next();
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("id", tutor.getId());
+			jsonObj.put("user", tutor.getUsername());
+			jsonObj.put("firstname", tutor.getFirstname());
+			jsonObj.put("lastname", tutor.getLastname());
+			jsonObj.put("email", tutor.getEmail());
+			jsonObj.put("rankPoints", tutor.getRankPoints());
+			jsonObj.put("commentPoints", tutor.getCommentPoints());
+
+			array.add(jsonObj);
+
+		}
+
+		Response response = new Response("Done", array);
+
 		return response;
 	}
  

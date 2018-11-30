@@ -305,5 +305,16 @@ public class Controlador {
   
         return "problem";
     }
+    @GetMapping(value = "/filtrarProblema")
+    public String filtrarProblema(@RequestParam("materiaId") String materiaId, Model model){
+        model.addAttribute("materiaId", materiaId);
+        return "filtrarProblema";
+    }
+    @GetMapping(value = "/filtrarTutor")
+    public String filtrarTutor(@RequestParam("materiaId") String materiaId, Model model){
+        model.addAttribute("materiaId", materiaId);
+        return "filtrarTutor";
+    }
+
     
 }

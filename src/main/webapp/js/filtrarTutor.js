@@ -73,69 +73,20 @@ $(function() {
             }
         }); 
     }
-    cargarProblemas();
-    function cargarProblemas(){
-        $.ajax({
-            type : "GET",
-            url : "/cargarProblemas",
-            success: function(result){
-                if(result.status == "Done"){
-                    for(i=0; i < result.data.length; i++){
-                        $("#page-wrapper").append(
-                            "<div class='row'>" +
-                "<div class='col-lg-12'>" +
-                    "<div class='panel panel-default'>" +
-                        "<div class='panel-heading'>" +
-                            "<a class='problem_link' href='#' id='" + result.data[i][3] +"'>    "+result.data[i][0] + "</a>"+
-                            "<div class='pull-right'>" +
-                                "<div class='btn-group'>" +
-                                    "<button type='button' class='btn btn-default btn-xs dropdown-toggle' data-toggle='dropdown'>" +
-                                        "Acciones" +
-                                        "<span class='caret'></span>" +
-                                    "</button>" +
-                                    "<ul class='dropdown-menu pull-right' role='menu'>" +
-                                        "<li><a name='test1' href='#'>Hacer cosa</a>" +
-                                    "</ul>" +
-                                "</div>" +
-                            "</div>" +
-                        "</div>" +
-                        "<div class='panel-body'>" +
-                            "<p>" + result.data[i][1] + 
-                            "</p>" +
-                        "</div>" +
-                        "<div class='panel-footer'>" +
-                        "</div>" +
-                    "</div>" +
-            "</div>"
-
-
-
-                            );
-                        
-                    }
-                    console.log("Success: ", result);
-                }else{
-                    
-                    console.log("Fail: ", result);
-                }
-            },
-            error : function(e) {
-                
-                console.log("ERROR: ", e);
-            }
-        }); 
-    }
+    
 
     $("body").on("click", ".problem_link", function(){
         window.location.href = "/problema?problemId=" + this.id;
     });
 
-    $(".materia_search").click(function(){
-        var materiaId = this.id;
-        $("#page-wrapper").empty();
+    
+    loadResults();
+
+    function loadResults(){
+        var materiaId = $("#materia_id").text();
         $.ajax({
             type : "GET",
-            url : "/filtrarMateria?materiaId=" + materiaId,
+            url : "/filtrarTutorResults?materiaId=" + materiaId,
             success: function(result){
                 if(result.status == "Done"){
                     for(i=0; i < result.data.length; i++){
@@ -144,7 +95,7 @@ $(function() {
                 "<div class='col-lg-12'>" +
                     "<div class='panel panel-default'>" +
                         "<div class='panel-heading'>" +
-                            "<a class='problem_link' href='#' id='" + result.data[i].id +"'>    "+result.data[i].title + "</a>"+
+                            result.data[i].user +
                             "<div class='pull-right'>" +
                                 "<div class='btn-group'>" +
                                     "<button type='button' class='btn btn-default btn-xs dropdown-toggle' data-toggle='dropdown'>" +
@@ -152,18 +103,22 @@ $(function() {
                                         "<span class='caret'></span>" +
                                     "</button>" +
                                     "<ul class='dropdown-menu pull-right' role='menu'>" +
-                                        "<li><a name='test1' href='#'>Hacer cosa</a>" +
+                                        "<li><a class='alumno_tutor_link' href='#'>Hacer cosa</a>" +
                                     "</ul>" +
                                 "</div>" +
                             "</div>" +
                         "</div>" +
                         "<div class='panel-body'>" +
-                            "<p>" + result.data[i].text + 
+                            "<p>Nombre: " + result.data[i].firstname + 
+                            "</p>" +
+                            "<p> Apellido: " + result.data[i].lastname + 
+                            "</p>" +
+                            "<p> Email: " + result.data[i].email + 
                             "</p>" +
                         "</div>" +
                         "<div class='panel-footer'>" +
                         "</div>" +
-                    "</div>" +
+                    "</div><div id='tutor_id' hidden></div>" +
             "</div>"
 
 
@@ -182,7 +137,36 @@ $(function() {
                 console.log("ERROR: ", e);
             }
         });
-    })
+    }
+
+    $("body").on("click", ".alumno_tutor_link", function(){
+        window.location.href = "/problema?problemId=" + this.id;
+        $.ajax({
+            type : "POST",
+            url : "/alumno_tutor_link",
+            success: function(result){
+                if(result.status == "Done"){
+                    
+                    
+                    
+                    console.log("Success: ", result);
+                }else{
+                    console.log("Fail: ", result);
+                }
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+            }
+        });
+    });
+
+
+
+
+
+
+
+    
 
     
 
