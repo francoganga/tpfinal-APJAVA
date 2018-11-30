@@ -9,6 +9,7 @@ import com.unaj.edu.models.*;
 import com.unaj.edu.repository.*;
 
 import java.util.Set;
+import java.util.List;
 
 @Service
 public class MateriaService{

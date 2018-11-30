@@ -35,6 +35,9 @@ public class ProblemService{
     	}
     	return existingProblem;
     }
+    public List<Problem> findByMateria(Long materiaId){
+        return problemRepository.findByMateria(materiaId);
+    }
 
 }
 

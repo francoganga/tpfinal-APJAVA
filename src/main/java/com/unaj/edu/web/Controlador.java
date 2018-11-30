@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,6 +48,8 @@ public class Controlador {
     @Autowired
     MateriaService materiaService;
 
+    final static Logger logger = Logger.getLogger(Controlador.class); 
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String registration(Model model, HttpSession session) {
@@ -58,8 +61,7 @@ public class Controlador {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("userForm") UserLogin userLogin, Model model, HttpSession session) {
 
-
-        
+                 
         System.out.println("\n username desde form: " + userLogin.getUsername());
         System.out.println("\n password desde form: " + userLogin.getPassword());
         System.out.println("\n type desde form: " + userLogin.getType());

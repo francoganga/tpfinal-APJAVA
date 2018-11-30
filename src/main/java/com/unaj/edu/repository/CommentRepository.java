@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import com.unaj.edu.models.Proj;
+
 
 
 @Repository

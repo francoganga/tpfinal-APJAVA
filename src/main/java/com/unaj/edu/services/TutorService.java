@@ -11,6 +11,7 @@ import com.unaj.edu.repository.*;
 import com.unaj.edu.web.PasswordEncoder;
 
 import java.util.Set;
+import java.util.List;
 
 @Service
 public class TutorService{
@@ -30,6 +31,9 @@ public class TutorService{
 
     public Tutor findByUsername(String username) {
         return tutorRepository.findByUsername(username);
+    }
+    public List<Tutor> findByMateria(Long materiaId){
+        return tutorRepository.findByMateria(materiaId);
     }
 
 }
