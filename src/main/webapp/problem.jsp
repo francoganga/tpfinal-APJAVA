@@ -23,7 +23,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Sistema de Tutorias Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="/alumno">Bienvenido ${userLogged}!!</a>
             </div>
             <!-- /.navbar-header -->
 

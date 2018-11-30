@@ -60,7 +60,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Bienvenido ${userLogged}!!</a>
+                <a class="navbar-brand" href="/tutor">Bienvenido ${userLogged}!!</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -101,20 +101,9 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             </div>
                             <!-- /input-group -->
                         </li>
+                        
                         <li>
-                            <a href="tutor.jsp"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="/tutor"><i class="fa fa-dashboard fa-fw"></i> Buscar problemas</a>
                         </li>
                        
                         
@@ -129,48 +118,13 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div id="titulo" class="col-lg-12">
                     <h1 class="page-header">Lista de problemas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Problema
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Acciones
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a name="test1" href="#">Hacer cosa</a>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <p>Descripcion problema</p>
-                        </div>
-                        <div class="panel-footer">
-                            Cosas de puntaje
-                        </div>
-                    </div>
-                   
-                    
-                    
-                
-                
-            </div>
-            <!-- /.row -->
+
         </div>
-        <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
