@@ -11,9 +11,12 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+import com.unaj.edu.models.Proj;
 
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long>{
 
+	@Query(value = "SELECT *  from Comment where problem_comment_id=(:problemId)", nativeQuery=true)
+	public List<Comment> findByProblem(@Param("problemId") Long problemId);
 }

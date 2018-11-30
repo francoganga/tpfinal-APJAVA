@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.unaj.edu.models.Comment;
-import com.unaj.edu.models.Problem;
+
+import com.unaj.edu.models.*;
 import com.unaj.edu.repository.CommentRepository;
 
 import java.util.HashSet;
@@ -23,6 +23,9 @@ public class CommentService{
     }
     public List<Comment> findAll(){
     	return commentRepository.findAll();
+    }
+    public List<Comment> findByProblem(Long problemId){
+    	return commentRepository.findByProblem(problemId);
     }
 }
 
