@@ -145,6 +145,9 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="/misTutores" class="getTutores"><i class="fa fa-dashboard fa-fw"></i> Mis Tutores</a>
+                        </li>
                        
                         
                         

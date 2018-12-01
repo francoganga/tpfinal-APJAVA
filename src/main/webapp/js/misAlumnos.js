@@ -83,10 +83,10 @@ $(function() {
     loadResults();
 
     function loadResults(){
-        var materiaId = $("#materia_id").text();
+        var tutorId = $("#tutor_id").text();
         $.ajax({
             type : "GET",
-            url : "/filtrarTutorResults?materiaId=" + materiaId,
+            url : "/getMisAlumnos?tutorId=" + tutorId,
             success: function(result){
                 if(result.status == "Done"){
                     for(i=0; i < result.data.length; i++){
@@ -96,17 +96,7 @@ $(function() {
                     "<div class='panel panel-default'>" +
                         "<div class='panel-heading'>" +
                             result.data[i].user +
-                            "<div class='pull-right'>" +
-                                "<div class='btn-group'>" +
-                                    "<button type='button' class='btn btn-default btn-xs dropdown-toggle' data-toggle='dropdown'>" +
-                                        "Acciones" +
-                                        "<span class='caret'></span>" +
-                                    "</button>" +
-                                    "<ul class='dropdown-menu pull-right' role='menu'>" +
-                                        "<li><a" + " id='"+result.data[i].id+"' class='alumno_tutor_link' href='#'>Inscribirse</a>" +
-                                    "</ul>" +
-                                "</div>" +
-                            "</div>" +
+                            
                         "</div>" +
                         "<div class='panel-body'>" +
                             "<p>Nombre: " + result.data[i].firstname + 
@@ -139,26 +129,26 @@ $(function() {
         });
     }
 
-    $("body").on("click", ".alumno_tutor_link", function(){
-        var tutor_id = this.id;
-        $.ajax({
-            type : "GET",
-            url : "/alumno_tutor_link?tutorId=" + tutor_id,
-            success: function(result){
-                if(result.status == "Done"){
+    // $("body").on("click", ".alumno_tutor_dlink", function(){
+    //     var tutor_id = this.id;
+    //     $.ajax({
+    //         type : "GET",
+    //         url : "/alumno_tutor_dlink?tutorId=" + tutor_id,
+    //         success: function(result){
+    //             if(result.status == "Done"){
                     
                     
                     
-                    console.log("Success: ", result);
-                }else{
-                    console.log("Fail: ", result);
-                }
-            },
-            error : function(e) {
-                console.log("ERROR: ", e);
-            }
-        });
-    });
+    //                 console.log("Success: ", result);
+    //             }else{
+    //                 console.log("Fail: ", result);
+    //             }
+    //         },
+    //         error : function(e) {
+    //             console.log("ERROR: ", e);
+    //         }
+    //     });
+    // });
 
 
 

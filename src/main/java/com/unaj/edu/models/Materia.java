@@ -9,7 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 public class Materia implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +20,7 @@ public class Materia implements Serializable{
 
 	private String description;
 
-	@ManyToMany(mappedBy = "materias")
+	@ManyToMany(mappedBy = "materias", fetch = FetchType.LAZY)
 	private Set<Tutor> tutores;
 
     

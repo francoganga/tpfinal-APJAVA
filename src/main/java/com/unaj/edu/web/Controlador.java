@@ -12,11 +12,13 @@ import java.io.IOException;
 
 import com.unaj.edu.models.*;
 
+
 import com.unaj.edu.repository.*;
 import com.unaj.edu.services.*;
 import com.unaj.edu.web.PasswordEncoder;
 import java.util.List;
 
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -213,7 +215,7 @@ public class Controlador {
                 tutor.setFirstname(alumnoForm.getFirstname());
                 tutor.setLastname(alumnoForm.getLastname());
                 tutor.setEmail(alumnoForm.getEmail());
-                tutorService.save(tutor);
+                tutorService.saveRegistration(tutor);
                 return "redirect:/login";
             }else{
                 model.addAttribute("error","Usuario ya existe");
@@ -234,7 +236,7 @@ public class Controlador {
                 alumno.setFirstname(alumnoForm.getFirstname());
                 alumno.setLastname(alumnoForm.getLastname());
                 alumno.setEmail(alumnoForm.getEmail());
-                alumnoService.save(alumno);
+                alumnoService.saveRegistration(alumno);
                 return "redirect:/login";
             }else{
                 model.addAttribute("error", "Usuario ya existe");
@@ -315,6 +317,72 @@ public class Controlador {
         model.addAttribute("materiaId", materiaId);
         return "filtrarTutor";
     }
+    @GetMapping(value = "/alumno_tutor_link")
+    public String alumno_tutor_link(HttpSession s, @RequestParam("tutorId") String tutorId){
+        Alumno alumno = alumnoService.findByUsername((String)s.getAttribute("userLogged"));
+
+        logger.debug("ALUMNO ES: " + alumno.getUsername());
+
+        Tutor tutor = tutorService.findById(Long.parseLong(tutorId,10));
+
+        logger.info("TUTOR ES: " + tutor.getUsername());
+
+
+        Set alumnos = tutor.getAlumnos();
+
+        alumnos.add(alumno);
+
+        tutor.setAlumnos(alumnos);
+
+        tutorService.save(tutor);
+
+
+        logger.info("hecho");
+        return "filtrarTutor";
+    }
+    @GetMapping(value = "/misTutores")
+    public String misTutores(Model model, HttpSession session){
+        Alumno alumno = alumnoService.findByUsername((String)session.getAttribute("userLogged"));
+
+        Long alumnoId = alumno.getId();
+
+        model.addAttribute("alumnoId", alumnoId);
+
+
+
+
+
+        return "misTutores";
+    }
+    @GetMapping(value = "/misAlumnos")
+    public String misAlumnos(Model model, HttpSession session){
+        Tutor tutor = tutorService.findByUsername((String)session.getAttribute("userLogged"));
+
+        Long tutorId = tutor.getId();
+
+        model.addAttribute("tutorId", tutorId);
+
+
+
+
+
+        return "misAlumnos";
+    }
+    // @GetMapping(value = "/alumno_tutor_dlink")
+    // public String alumno_tutor_dlink(HttpSession s, @RequestParam("tutorId") String tutorId){
+    //     Alumno alumno = alumnoService.findByUsername((String)s.getAttribute("userLogged"));
+
+        
+
+    //     Tutor tutor = tutorService.findById(Long.parseLong(tutorId,10));
+
+
+    //     alumnoService.deleteLink(alumno.getId(),tutor.getId());
+        
+
+    //     logger.info("hecho???");
+    //     return "misTutores";
+    // }
 
     
 }

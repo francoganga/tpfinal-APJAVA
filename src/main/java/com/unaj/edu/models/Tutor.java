@@ -9,7 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 public class Tutor implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +36,7 @@ public class Tutor implements Serializable{
 
 
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "tutor_materia", joinColumns = @JoinColumn(name = "tutor_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"))
     private Set<Materia> materias;
 
@@ -80,19 +81,34 @@ public class Tutor implements Serializable{
 
 
 
-    @Override
-    public String toString() {
-        String result = String.format(
-                "Tutores [id=%d, username='%s']%n",
-                id, username);
-        if (materias != null) {
-            for(Materia materia : materias) {
-                result += String.format(
-                        "Materia[id=%d, title='%s']%n",
-                        materia.getId(), materia.getTitle());
-            }
-        }
+    // @Override
+    // public String toString() {
+    //     String result = String.format(
+    //             "Tutores [id=%d, username='%s']%n",
+    //             id, username);
+    //     if (materias != null) {
+    //         for(Materia materia : materias) {
+    //             result += String.format(
+    //                     "Materia[id=%d, title='%s']%n",
+    //                     materia.getId(), materia.getTitle());
+    //         }
+    //     }
 
-        return result;
-    }
+    //     return result;
+    // }
+    // @Override
+    // public boolean equals(Object o) {
+    //     if (this == o) return true;
+ 
+    //     if (o == null || getClass() != o.getClass()) 
+    //         return false;
+ 
+    //     Tutor that = (Tutor) o;
+    //     return Objects.equals(id, that.id);
+    // }
+ 
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(id);
+    // }
 }

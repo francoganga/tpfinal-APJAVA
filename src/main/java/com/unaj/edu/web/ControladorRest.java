@@ -201,6 +201,90 @@ public class ControladorRest {
 			jsonObj.put("rankPoints", tutor.getRankPoints());
 			jsonObj.put("commentPoints", tutor.getCommentPoints());
 
+
+			
+			
+
+
+			
+
+			array.add(jsonObj);
+
+		}
+
+		Response response = new Response("Done", array);
+
+		return response;
+	}
+	@GetMapping(value= "/getMisTutores")
+	public Response getMisTutores(@RequestParam("alumnoId") String alumnoId){
+
+		
+
+		List<Tutor> tutores = tutorService.findByAlumno(Long.parseLong(alumnoId,10));
+
+		
+		JSONArray array = new JSONArray();
+
+		Iterator value = tutores.iterator();
+
+		Tutor tutor;
+
+		while(value.hasNext()){
+			tutor = (Tutor) value.next();
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("id", tutor.getId());
+			jsonObj.put("user", tutor.getUsername());
+			jsonObj.put("firstname", tutor.getFirstname());
+			jsonObj.put("lastname", tutor.getLastname());
+			jsonObj.put("email", tutor.getEmail());
+			jsonObj.put("rankPoints", tutor.getRankPoints());
+			jsonObj.put("commentPoints", tutor.getCommentPoints());
+
+
+			
+			
+
+
+			
+
+			array.add(jsonObj);
+
+		}
+
+		Response response = new Response("Done", array);
+
+		return response;
+	}
+
+	@GetMapping(value= "/getMisAlumnos")
+	public Response getMisAlumnos(@RequestParam("tutorId") String tutorId){
+
+		
+
+		List<Alumno> alumnos = alumnoService.findByTutor(Long.parseLong(tutorId,10));
+
+		
+		JSONArray array = new JSONArray();
+
+		Iterator value = alumnos.iterator();
+
+		Alumno alumno;
+
+		while(value.hasNext()){
+			alumno = (Alumno) value.next();
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("id", alumno.getId());
+			jsonObj.put("user", alumno.getUsername());
+			jsonObj.put("firstname", alumno.getFirstname());
+			jsonObj.put("lastname", alumno.getLastname());
+			jsonObj.put("email", alumno.getEmail());
+			jsonObj.put("points", alumno.getPoints());
+			
+
+
+			
+
 			array.add(jsonObj);
 
 		}

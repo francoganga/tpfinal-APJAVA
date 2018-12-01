@@ -9,8 +9,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
 
 
-  %>
-
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,22 +60,25 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/alumno">Bienvenido ${userLogged}!!</a>
+                <a class="navbar-brand" href="/tutor">Bienvenido ${userLogged}!!</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    
                 
                 
+                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
+                        </li>                        
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a id="logout" href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -98,12 +100,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             </span>
                             </div>
                             <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        
-                        
+                        </li>                        
                         
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Buscar Problemas<span class="fa arrow"></span></a>
@@ -144,8 +141,12 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="/misTutores" class="getTutores"><i class="fa fa-dashboard fa-fw"></i> Mis Tutores</a>
+                            <a href="/misAlumnos" class="getAlumnos"><i class="fa fa-dashboard fa-fw"></i> Mis Alumnos</a>
                         </li>
+                        
+                       
+                        
+                        
                         
                     </ul>
                 </div>
@@ -156,52 +157,14 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 id="problem_title" class="page-header"></h1>
+                <div id="titulo" class="col-lg-12">
+                    <h1 class="page-header">Mis Alumnos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">${title}</div>
-                        
-                        <div id="problem_desc" class="panel-body">
-                            ${text}
-                        </div>
-                        
-                    </div>
-                </div>
-                <div id="problem_id" hidden="true">${problem_id}</div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Comentarios
-                        </div>
-                        <div id="comments" class="panel-body">
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            
-            <!-- /.row -->
-            
-            <!-- /.row -->
-            
-            <!-- /.row -->
-            
-            <!-- /.row -->
+            <div id="tutor_id" hidden>${tutorId}</div>
+    
         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -218,7 +181,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
     
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/problem.js"></script>
+    <script src="js/misAlumnos.js"></script>
 
 </body>
 

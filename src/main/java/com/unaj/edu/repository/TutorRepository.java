@@ -20,4 +20,8 @@ public interface TutorRepository extends JpaRepository<Tutor, Long>{
 	@Query(value = "SELECT *" +
 	" FROM tutor t INNER JOIN tutor_materia tm on t.id = tm.tutor_id WHERE materia_id = (:materiaId) ", nativeQuery=true)
 	List<Tutor> findByMateria(@Param("materiaId") Long materiaId);
+
+	@Query(value = "SELECT *" +
+	" FROM tutor t INNER JOIN alumno_tutor atut on t.id = atut.tutor_id where alumno_id = (:alumnoId) ", nativeQuery=true)
+	List<Tutor> findByAlumno(@Param("alumnoId") Long alumnoId);
 }

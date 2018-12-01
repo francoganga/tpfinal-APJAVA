@@ -87,17 +87,6 @@ $(function() {
                     "<div class='panel panel-default'>" +
                         "<div class='panel-heading'>" +
                             "<a class='problem_link' href='#' id='" + result.data[i][3] +"'>    "+result.data[i][0] + "</a>"+
-                            "<div class='pull-right'>" +
-                                "<div class='btn-group'>" +
-                                    "<button type='button' class='btn btn-default btn-xs dropdown-toggle' data-toggle='dropdown'>" +
-                                        "Acciones" +
-                                        "<span class='caret'></span>" +
-                                    "</button>" +
-                                    "<ul class='dropdown-menu pull-right' role='menu'>" +
-                                        "<li><a name='test1' href='#'>Hacer cosa</a>" +
-                                    "</ul>" +
-                                "</div>" +
-                            "</div>" +
                         "</div>" +
                         "<div class='panel-body'>" +
                             "<p>" + result.data[i][1] + 

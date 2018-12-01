@@ -10,6 +10,7 @@ import com.unaj.edu.repository.*;
 
 import com.unaj.edu.web.PasswordEncoder;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.List;
 
@@ -20,12 +21,15 @@ public class TutorService{
 
     
     public void save(Tutor tutor) {
+        tutorRepository.save(tutor);
+    }
+    public void saveRegistration(Tutor tutor){
         String salt = PasswordEncoder.getSalt(30);
 
-    	String securePassword = PasswordEncoder.generateSecurePassword(tutor.getPassword(), salt);
+        String securePassword = PasswordEncoder.generateSecurePassword(tutor.getPassword(), salt);
 
-    	tutor.setPassword(securePassword);
-    	tutor.setSalt(salt);
+        tutor.setPassword(securePassword);
+        tutor.setSalt(salt);
         tutorRepository.save(tutor);
     }
 
@@ -35,6 +39,18 @@ public class TutorService{
     public List<Tutor> findByMateria(Long materiaId){
         return tutorRepository.findByMateria(materiaId);
     }
-
+    public Tutor findById(Long id){
+        Tutor existingTutor;
+        Optional<Tutor> tutor = tutorRepository.findById(id);
+        if(tutor.isPresent()){
+            existingTutor = tutor.get();
+        }else{
+            existingTutor = new Tutor();
+        }
+        return existingTutor;
+    }
+    public List<Tutor> findByAlumno(Long id){
+        return tutorRepository.findByAlumno(id);
+    }
 }
 
