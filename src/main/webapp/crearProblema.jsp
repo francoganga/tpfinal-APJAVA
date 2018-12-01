@@ -187,7 +187,14 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                                         </div>
                                         <div class="form-group">
                                             <label>Elije la materia</label>
-                                            <div class="form-group">
+                                            <form:select path="materiaTitle" class="form-control">
+                                                <option value="Matematica">Matematica</option>
+                                                <option value="Lengua">Lengua</option>
+                                                <option value="S. Sociales">S. Sociales</option>
+                                                <option value="Geografia">Geografia</option>
+                                            </form:select>
+                                            <br>
+                                            <!-- <div class="form-group">
                                                 <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="Matematica" checked="true"></form:radiobutton> Matematica</label>
                                             </div>
                                             <div class="form-group">
@@ -198,7 +205,7 @@ if (session.getAttribute("userLogged") == null || session.getAttribute("userLogg
                                             </div>
                                             <div class="form-group">
                                                 <label><form:radiobutton class="form-check-input" path="materiaTitle" name="optradio" value="Geografia"></form:radiobutton> Geografia</label>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Continuar"/>
                                             </div>
